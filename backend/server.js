@@ -1,30 +1,21 @@
 const express = require('express');
-const multer = require('multer');
-const path = require('path');
 const bodyParser = require('body-parser');
-const { handleSkillGapAnalysis } = require('./skillGapModule');
-const { handleLearningPlan } = require('./dynamicLearning');
-const { startMockInterview } = require('./mockInterviewModule');
+const multer = require('multer');
 const cors = require('cors');
-const fs = require('fs');
 require('dotenv').config();
+
+const { handleSkillGapAnalysis } = require('./skillGapModule');
+const { handleLearningPlan } = require('./learningPlan');
+const { handleMockInterview } = require('./mockInterviewModule');
+const { handleResumeReview } = require('./resumeReview');
 
 const app = express();
 const port = 3001;
 
+const upload = multer({ dest: 'uploads/' });
+
 app.use(bodyParser.json());
 app.use(cors());
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, 'uploads'));
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  }
-});
-
-const upload = multer({ storage: storage });
 
 app.post('/skillbot', async (req, res) => {
     const { input, context } = req.body;
@@ -38,32 +29,38 @@ app.post('/skillbot', async (req, res) => {
 });
 
 app.post('/learning', async (req, res) => {
-    const { message } = req.body;
+    const input = req.body.input;
 
     try {
-        const result = await handleLearningPlan(message);
-        res.json({ reply: result.response });
+        const plan = await handleLearningPlan(input);
+        res.json({ plan });
     } catch (error) {
-        console.error("Error handling learning plan:", error);
+        console.error("Error generating learning plan:", error);
         res.status(500).send("Internal Server Error");
     }
 });
 
-app.post('/mock-interview', upload.single('resume'), async (req, res) => {
-  const { jobPosition } = req.body;
-  const { path: resumePath } = req.file;
-
-  try {
-      const result = await startMockInterview(resumePath, jobPosition);
-      res.json(result);
-  } catch (error) {
-      console.error('Error starting mock interview:', error);
-      res.status(500).send('Internal Server Error');
-  } finally {
-      // Clean up uploaded file after use (optional)
-      fs.unlinkSync(resumePath);
-  }
+app.post('/interview', async (req, res) => {
+    const userInput = req.body.userInput;
+    try {
+        const response = await handleMockInterview(userInput);
+        res.json({ response });
+    } catch (error) {
+        console.error('Error handling mock interview:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
+
+app.post('/review-resume', upload.single('resume'), async (req, res) => {
+    try {
+      const filePath = req.file.path;
+      const mimeType = req.file.mimetype;
+      const reviewText = await handleResumeReview(filePath, mimeType);
+      res.status(200).send({ review: reviewText });
+    } catch (error) {
+      res.status(500).send({ error: 'An error occurred while reviewing the resume.' });
+    }
+  });
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

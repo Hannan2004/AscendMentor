@@ -6,13 +6,13 @@ import { getFirestore } from 'firebase/firestore'; // Added this line
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "enter your details here",
-  authDomain: "enter your details here",
-  projectId: "enter your details here",
-  storageBucket: "enter your details here",
-  messagingSenderId: "enter your details here",
-  appId: "enter your details here",
-  measurementId: "enter your details here"
+  apiKey: "Api",
+  authDomain: "your details",
+  projectId: "your details",
+  storageBucket: "your details",
+  messagingSenderId: "details",
+  appId: "details",
+  measurementId: "details"
 };
 
 // Initialize Firebase

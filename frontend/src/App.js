@@ -5,10 +5,14 @@ import Register from './pages/Register';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ForgotPassword from './pages/ForgotPassword';
-import News from './pages/News';
-import Community from './pages/Community';    
+import News from './pages/News';    
 import Profile from './pages/Profile';
 import HomePage from './pages/Home';
+import SkillBot from './pages/SkillBot';
+import Resume from './pages/Resume';
+import InterviewForm from './pages/InterviewForm';
+import ChatbotInterview from './pages/InterviewBot';
+import LearningPlan from './pages/LearningPlan';
 
 function App() {
   return (
@@ -17,13 +21,17 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
-          <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword/>} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/news" element={<News />} />
-            <Route path="/community" element={<Community />} />  
-            <Route path="/profile" element={<Profile />} />      
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/skillbot" element={<SkillBot />} />
+            <Route path="/resume" element={<Resume />} />       
+            <Route path="/form" element={<InterviewForm />} />
+            <Route path="/interview" element={<ChatbotInterview />} />
+            <Route path="/learning" element={<LearningPlan />} />
           </Routes>
         </main>
         <Footer />
