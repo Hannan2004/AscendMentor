@@ -5,9 +5,9 @@ const cors = require('cors');
 require('dotenv').config();
 
 const { handleSkillGapAnalysis } = require('./skillGapModule');
-const { handleLearningPlan } = require('./learningPlan');
 const { handleMockInterview } = require('./mockInterviewModule');
 const { handleResumeReview } = require('./resumeReview');
+const { generateLearningPlan } = require('./learningPlanGenerator');
 
 const app = express();
 const port = 3001;
@@ -29,14 +29,16 @@ app.post('/skillbot', async (req, res) => {
 });
 
 app.post('/learning', async (req, res) => {
-    const input = req.body.input;
-
+    const { skill, dailyHours, months } = req.body;
+    const userInput = `I want to learn ${skill}, I can dedicate ${dailyHours} every day, and I want to learn this skill in ${months} months. Generate a personalized learning plan for me.`
     try {
-        const plan = await handleLearningPlan(input);
-        res.json({ plan });
+        console.log('Received request:', req.body);
+        const response = await generateLearningPlan(userInput);
+        console.log('Generated learning plan:', response);
+        res.json({ plan: response });
     } catch (error) {
-        console.error("Error generating learning plan:", error);
-        res.status(500).send("Internal Server Error");
+        console.error('Error generating learning plan:', error);
+        res.status(500).json({ error: error.message });
     }
 });
 

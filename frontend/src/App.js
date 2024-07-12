@@ -12,7 +12,8 @@ import SkillBot from './pages/SkillBot';
 import Resume from './pages/Resume';
 import InterviewForm from './pages/InterviewForm';
 import ChatbotInterview from './pages/InterviewBot';
-import LearningPlan from './pages/LearningPlan';
+import UserDashboard from './pages/UserDashboard';
+import LearningPlanForm from './pages/LearningPlanForm';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
             <Route path="/resume" element={<Resume />} />       
             <Route path="/form" element={<InterviewForm />} />
             <Route path="/interview" element={<ChatbotInterview />} />
-            <Route path="/learning" element={<LearningPlan />} />
+            <Route path="/learning" element={<LearningPlanForm />} />
           </Routes>
         </main>
         <Footer />

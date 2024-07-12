@@ -31,6 +31,12 @@ const ResumeReview = () => {
     setLoading(false);
   };
 
+  const formatReview = (text) => {
+    return text
+      .replace(/(Key Points:|Strengths:|Areas for Improvement:)/g, '<strong>$1</strong>')
+      .replace(/_(.*?)_/g, '<u>$1</u>');
+  };
+
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-center">Resume Review</h1>
@@ -67,14 +73,18 @@ const ResumeReview = () => {
         <button
           type="submit"
           className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          disabled={loading}
         >
           {loading ? 'Reviewing...' : 'Submit'}
         </button>
       </form>
       {review && (
-        <div className="mt-6 p-4 bg-gray-100 rounded-lg shadow">
-          <h2 className="text-2xl font-bold mb-4">Review Feedback</h2>
-          <p className="text-gray-700">{review}</p>
+        <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold mb-4 text-center">Review Feedback</h2>
+          <div
+            className="text-gray-700 whitespace-pre-line"
+            dangerouslySetInnerHTML={{ __html: formatReview(review) }}
+          />
         </div>
       )}
     </div>
@@ -82,3 +92,4 @@ const ResumeReview = () => {
 };
 
 export default ResumeReview;
+
