@@ -1,0 +1,99 @@
+/* UserDashboard.css */
+
+.dashboard-background {
+    background: url('https://www.transparenttextures.com/patterns/stardust.png') no-repeat center center fixed;
+    background-size: cover;
+    background-color: #000000; /* Black background */
+    position: relative;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
+
+.text-center {
+    z-index: 1;
+}
+
+.header-text {
+    color: #ffffff; /* Crystal white color for the header text */
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 
+        0 0 3px #ffffff,  /* Softer glow */
+        0 0 6px #ffffff,  /* Softer glow */
+        0 0 9px #ffffff,  /* Softer glow */
+        0 0 12px #00bfff, /* Blue outer glow */
+        0 0 18px #00bfff, /* Blue outer glow */
+        0 0 24px #00bfff; /* Blue outer glow */
+}
+
+.description-text {
+    color: #ffffff; /* Crystal white color for the description text */
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 
+        0 0 3px #ffffff,  /* Softer glow */
+        0 0 6px #ffffff,  /* Softer glow */
+        0 0 9px #ffffff,  /* Softer glow */
+        0 0 12px #00bfff, /* Blue outer glow */
+        0 0 18px #00bfff, /* Blue outer glow */
+        0 0 24px #00bfff; /* Blue outer glow */
+}
+
+.feature-card {
+    background: rgba(0, 0, 0, 0.7); /* Slightly transparent black background */
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: #ffffff; /* White text color */
+    z-index: 1;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent white border */
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 20%, rgba(0, 0, 0, 0) 80%);
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.feature-title {
+    color: #00bfff; /* Bright blue color for feature titles */
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 3px #00bfff, 0 0 6px #00bfff; /* Softer blue glow effect */
+}
+
+.feature-description {
+    color: #d3d3d3; /* Light gray for feature descriptions */
+    font-family: 'Roboto', sans-serif;
+}
+
+.start-button {
+    background: linear-gradient(90deg, rgba(0, 191, 255, 1) 0%, rgba(255, 0, 255, 1) 100%); /* Gradient background */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 1; /* Make sure the button is above the card */
+}
+
+.start-button:hover {
+    background: linear-gradient(90deg, rgba(0, 191, 255, 1) 0%, rgba(255, 0, 255, 1) 100%); /* Gradient on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect */
+}

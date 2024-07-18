@@ -1,108 +1,63 @@
 import React from 'react';
+import './UserDashboard.css';  // Import the CSS file for the styles
+import { motion } from 'framer-motion';
 
 const UserDashboard = () => {
-  // Example static data
-  const activities = [
-    { description: 'Completed Skill Gap Analysis.' },
-    { description: 'Generated Learning Plan for next month.' },
-    { description: 'Attended a mock interview session.' },
-  ];
-
-  const notifications = [
-    { message: 'Your skill gap analysis is ready.' },
-    { message: 'New learning resources are available.' },
-    { message: 'Your recent mock interview feedback is available.' },
-  ];
-
-  const skillGapAnalysis = {
-    results: 'You have gaps in advanced machine learning and data encryption. Suggested resources are provided.',
-  };
-
-  const learningPlan = {
-    plan: [
-      'Complete the Machine Learning Specialization on Coursera.',
-      'Read "Introduction to Modern Cryptography" book.',
-      'Join a local AI meetup group.',
-    ],
-  };
-
-  const interviewFeedback = [
-    { feedback: 'Good job on explaining your projects, but try to be more concise in your answers.' },
-    { feedback: 'Your problem-solving skills are strong, but work on time management during interviews.' },
-  ];
-
-  return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-6">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-4xl">
-        <h2 className="text-3xl font-bold mb-4 text-center">User Dashboard</h2>
-        
-        {/* Overview Section */}
-        <div className="bg-gray-50 p-6 rounded shadow-sm mb-6">
-          <h3 className="text-2xl font-semibold mb-4">Overview</h3>
-          
-          <div className="mb-6">
-            <h4 className="text-xl font-semibold mb-2">User Activities</h4>
-            {activities.length > 0 ? (
-              <ul className="list-disc pl-5">
-                {activities.map((activity, index) => (
-                  <li key={index} className="text-gray-700 mb-2">{activity.description}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>No activities available.</p>
-            )}
-          </div>
-          
-          <div>
-            <h4 className="text-xl font-semibold mb-2">Notifications</h4>
-            {notifications.length > 0 ? (
-              <ul className="list-disc pl-5">
-                {notifications.map((notification, index) => (
-                  <li key={index} className="text-gray-700 mb-2">{notification.message}</li>
-                ))}
-              </ul>
-            ) : (
-              <p>No notifications available.</p>
-            )}
-          </div>
+    return (
+        <div className="dashboard-background min-h-screen flex flex-col items-center justify-center">
+            <div className="overlay"></div>
+            <div className="text-center mb-12">
+                <motion.h1 
+                    className="text-6xl header-text mb-4"
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    Welcome to Your Dashboard
+                </motion.h1>
+                <motion.p 
+                    className="text-xl description-text"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                    Explore the features of our AI-powered career growth tools designed to help you succeed.
+                </motion.p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+                <motion.div 
+                    className="feature-card"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                    <h2 className="text-2xl feature-title mb-4">Interview Preparation</h2>
+                    <p className="feature-description mb-4">Prepare for your next job interview with personalized AI-driven mock interviews and feedback. Our smart system will help you enhance your answers and presentation skills.</p>
+                    <button className="start-button">Start</button>
+                </motion.div>
+                <motion.div 
+                    className="feature-card"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                >
+                    <h2 className="text-2xl feature-title mb-4">Smart AI Learning</h2>
+                    <p className="feature-description mb-4">Enhance your skills with AI-curated learning resources and adaptive learning plans. Stay ahead in your field with tailored courses and materials designed just for you.</p>
+                    <button className="start-button">Start</button>
+                </motion.div>
+                <motion.div 
+                    className="feature-card"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                    <h2 className="text-2xl feature-title mb-4">Resume Analyzer</h2>
+                    <p className="feature-description mb-4">Optimize your resume with AI-based analysis and suggestions to stand out to recruiters. Get actionable feedback and refine your resume to make a strong impression.</p>
+                    <button className="start-button">Start</button>
+                </motion.div>
+            </div>
         </div>
-        
-        {/* Skill Gap Analysis Section */}
-        <div className="bg-white p-6 rounded shadow-md mb-6">
-          <h3 className="text-2xl font-semibold mb-4">Skill Gap Analysis</h3>
-          <p>{skillGapAnalysis.results}</p>
-        </div>
-        
-        {/* Learning Plan Section */}
-        <div className="bg-white p-6 rounded shadow-md mb-6">
-          <h3 className="text-2xl font-semibold mb-4">Learning Plan</h3>
-          {learningPlan.plan.length > 0 ? (
-            <ul className="list-disc pl-5">
-              {learningPlan.plan.map((item, index) => (
-                <li key={index} className="text-gray-700 mb-2">{item}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No learning plan available.</p>
-          )}
-        </div>
-        
-        {/* Interview Feedback Section */}
-        <div className="bg-white p-6 rounded shadow-md">
-          <h3 className="text-2xl font-semibold mb-4">Interview Feedback</h3>
-          {interviewFeedback.length > 0 ? (
-            <ul className="list-disc pl-5">
-              {interviewFeedback.map((feedback, index) => (
-                <li key={index} className="text-gray-700 mb-2">{feedback.feedback}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No interview feedback available.</p>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default UserDashboard;

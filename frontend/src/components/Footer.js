@@ -1,5 +1,5 @@
-// Footer.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -9,14 +9,14 @@ const Footer = () => {
         <div className="w-full md:w-1/5 mb-6 md:mb-0">
           <h5 className="text-lg font-bold mb-2">Mail Us</h5>
           <p>
-            <a href="mailto:ridaygada13@gmail.com" className="text-gray-300 hover:text-white transition duration-300">ascendmentor@gmail.com</a>
+            <a href="mailto:ascendmentor@gmail.com" className="text-gray-300 hover:text-white transition duration-300">ascendmentor@gmail.com</a>
           </p>
         </div>
         {/* About Section */}
         <div className="w-full md:w-1/5 mb-6 md:mb-0">
           <h5 className="text-lg font-bold mb-2">About</h5>
           <p>
-            <a href="/about" className="text-gray-300 hover:text-white transition duration-300">Learn more about us</a>
+            <Link to="/about" className="text-gray-300 hover:text-white transition duration-300">Learn more about us</Link>
           </p>
         </div>
         {/* Social Media Links */}
@@ -39,14 +39,14 @@ const Footer = () => {
         <div className="w-full md:w-1/5 mb-6 md:mb-0">
           <h5 className="text-lg font-bold mb-2">Latest News</h5>
           <p>
-            <a href="/news" className="text-gray-300 hover:text-white transition duration-300">Read our latest updates</a>
+            <Link to="/news" className="text-gray-300 hover:text-white transition duration-300">Read our latest updates</Link>
           </p>
         </div>
         {/* FAQs */}
         <div className="w-full md:w-1/5">
           <h5 className="text-lg font-bold mb-2">FAQs</h5>
           <p>
-            <a href="Community.js" className="text-white font-bold hover:text-white transition duration-300">Frequently Asked Questions</a>
+            <Link to="/faqs" className="text-white font-bold hover:text-white transition duration-300">Frequently Asked Questions</Link>
           </p>
         </div>
       </div>
@@ -55,9 +55,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
-
-
-
