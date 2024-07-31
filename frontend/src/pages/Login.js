@@ -102,7 +102,7 @@ const Login = () => {
                     New Register
                   </motion.div>
                 </Link>
-                <Link to="/forgotpassword" className="text-indigo-600 text-center block">Forgot your password?</Link>
+                <Link to="/changepassword" className="text-indigo-600 text-center block">Forgot your password?</Link>
               </div>
               {message && (
                 <motion.p

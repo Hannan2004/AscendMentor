@@ -15,16 +15,19 @@ const SkillBot = () => {
         setInput('');
 
         try {
+            console.log('Sending message to /skillbot:', input);
             const response = await axios.post('http://localhost:3001/skillbot', { input });
+            console.log('Received response from /skillbot:', response.data);
+
             const geminiMessage = { gemini: response.data.response };
-            setMessages([...updatedMessages, geminiMessage]);
+            setMessages(prevMessages => [...prevMessages, geminiMessage]);
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
 
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
     useEffect(() => {

@@ -7,7 +7,7 @@ const News = () => {
 
     useEffect(() => {
         const fetchNews = async () => {
-            const apiKey = 'your api'; // Replace with your actual API key
+            const apiKey = '8daf24421dff43d9a8d3e0bdd7da1f6e'; // Replace with your actual API key
             const apiUrl = `https://newsapi.org/v2/top-headlines?language=en&category=technology&apiKey=${apiKey}`;
 
             try {

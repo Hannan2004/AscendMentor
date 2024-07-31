@@ -3,7 +3,7 @@ import { auth, googleProvider, db } from '../firebase';
 import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const Register = () => {
   const [securityQuestion, setSecurityQuestion] = useState('What is your favourite sport?');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -33,6 +33,7 @@ const Register = () => {
       await addDoc(collection(db, 'users'), {
         uid: user.uid,
         email,
+        password,  // Store the password (consider security implications)
         firstName,
         lastName,
         securityQuestion,
@@ -203,41 +204,17 @@ const Register = () => {
             <motion.button
               type="button"
               className="w-full bg-red-500 text-white p-3 rounded-lg mb-4 hover:bg-red-600 focus:outline-none transition-all duration-300 ease-in-out"
-              onClick={handleGoogleSignup}
               whileHover={{ scale: 1.05 }}
+              onClick={handleGoogleSignup}
             >
-              Signup with Google
+              Sign Up with Google
             </motion.button>
-            {message && (
-              <motion.p
-                className="text-green-600 text-center mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                {message}
-              </motion.p>
-            )}
-            {error && (
-              <motion.p
-                className="text-red-600 text-center mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                {error}
-              </motion.p>
-            )}
+            <div className="text-center">
+              <p className="text-gray-600">Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+            </div>
+            {message && <p className="text-green-500 text-center">{message}</p>}
+            {error && <p className="text-red-500 text-center">{error}</p>}
           </form>
-          <p className="text-center text-gray-600 mb-4">Or</p>
-          <motion.button
-            type="button"
-            className="w-full bg-green-500 text-white p-3 rounded-lg mb-4 hover:bg-green-600 focus:outline-none transition-all duration-300 ease-in-out"
-            onClick={handleGoogleLogin}
-            whileHover={{ scale: 1.05 }}
-          >
-            Login with Google
-          </motion.button>
         </motion.div>
       </div>
     </div>
