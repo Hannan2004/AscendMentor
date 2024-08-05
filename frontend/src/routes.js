@@ -8,7 +8,6 @@ import SkillBot from './pages/SkillBot';
 import Resume from './pages/Resume';
 import InterviewForm from './pages/InterviewForm';
 import ChatbotInterview from './pages/InterviewBot';
-import UserDashboard from './pages/UserDashboard';
 import LearningPlanForm from './pages/LearningPlanForm';
 import ChangePassword from './pages/passwordChange';
 
@@ -23,7 +22,6 @@ export const routes = [
   { path: '/resume', element: <Resume /> },
   { path: '/form', element: <InterviewForm /> },
   { path: '/interview', element: <ChatbotInterview /> },
-  { path: '/dashboard', element: <UserDashboard /> },
   { path: '/learning', element: <LearningPlanForm /> },
   { path: '/changepassword', element: <ChangePassword /> },
 ];

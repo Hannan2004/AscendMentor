@@ -19,7 +19,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
       setMessage('Login successful!');
       setError('');
-      navigate('/dashboard');  // Navigate to the User Dashboard page
+      navigate('/');  // Navigate to the User Home page
     } catch (error) {
       console.error('Error logging in:', error);
       setError('Invalid email or password.');
