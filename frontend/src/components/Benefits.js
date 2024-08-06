@@ -8,9 +8,9 @@ const benefits = [
 
 const Benefits = () => {
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-12 bg-gray-100 bg-gradient-to-r from-blue-500 to-purple-600">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-6">Benefits</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">Benefits</h2>
         <div className="flex flex-wrap -mx-4">
           {benefits.map((benefit, index) => (
             <div key={index} className="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">

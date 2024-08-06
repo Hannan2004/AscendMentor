@@ -25,9 +25,9 @@ const features = [
 
 const KeyFeatures = () => {
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white bg-gradient-to-r from-blue-500 to-purple-600">
       <div className="container mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-6">Key Features</h2>
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">Key Features</h2>
         <div className="flex flex-wrap -mx-4">
           {features.map((feature, index) => (
             <div key={index} className="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">

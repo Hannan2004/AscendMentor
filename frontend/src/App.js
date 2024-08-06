@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
-import News from './pages/News';
 import Profile from './pages/Profile';
 import HomePage from './pages/Home';
 import SkillBot from './pages/SkillBot';
@@ -27,7 +26,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="/news" element={<News />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/skillbot" element={<SkillBot />} />
             <Route path="/resume" element={<Resume />} />

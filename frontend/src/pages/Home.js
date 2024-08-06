@@ -13,15 +13,15 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gradient-to-r from-blue-500 to-purple-600">
       <HeroSection />
       <HowItWorks />
       <KeyFeatures />
       <Benefits />
-      <div className="flex justify-center items-center mt-12 mb-12">
+      <div className="flex justify-center items-center mt-12 mb-12 bg-gradient-to-r from-blue-500 to-purple-600">
         <button
           onClick={handleGetStartedClick}
-          className="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out transform hover:scale-105"
+          className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-300 ease-in-out transform hover:scale-105"
         >
           Get Started
         </button>

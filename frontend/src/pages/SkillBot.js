@@ -183,7 +183,7 @@ const SkillBot = () => {
           ))}
           <button
             onClick={startNewChat}
-            className="block w-full text-left p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
+            className="block w-full text-left p-3 bg-blue-500 text-white rounded-lg hover:bg-purple-600 transition duration-300 ease-in-out"
           >
             + New Chat
           </button>
@@ -192,8 +192,8 @@ const SkillBot = () => {
 
       {/* Main Chat Area */}
       <div className="flex flex-col flex-grow bg-white shadow-lg rounded-l-lg">
-        <div className="bg-blue-800 text-white p-5 rounded-t-lg">
-          <h2 className="text-3xl font-bold">Skill Gap Analysis Chatbot</h2>
+        <div className="bg-blue-500 text-white p-5 rounded-t-lg">
+          <h2 className="text-2xl font-bold">Skill Gap Analysis Chatbot</h2>
         </div>
         <div className="flex-grow overflow-y-auto p-6 bg-gray-50" style={{ maxHeight: 'calc(100vh - 112px)' }}>
           {messages.map((msg, index) => (

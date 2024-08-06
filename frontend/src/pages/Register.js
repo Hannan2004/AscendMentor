@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth, googleProvider, db } from '../firebase';
-import { createUserWithEmailAndPassword, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -74,149 +74,120 @@ const Register = () => {
     }
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/profile'); // Redirect to the User Dashboard page after successful login
-    } catch (error) {
-      console.error('Error logging in:', error);
-      setError('Failed to log in.');
-      setMessage('');
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      navigate('/profile'); // Redirect to the User Dashboard page after Google login
-    } catch (error) {
-      console.error('Error logging in with Google:', error);
-      setError('Failed to log in with Google.');
-      setMessage('');
-    }
-  };
-
   return (
-    <div className="relative min-h-screen bg-gradient-to-r from-blue-900 to-black overflow-hidden">
-      {/* Background Animation */}
-      <div className="absolute inset-0 bg-no-repeat bg-cover" style={{ backgroundImage: 'url(https://www.transparenttextures.com/patterns/stardust.png)' }}></div>
-      <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)]"></div>
-      <div className="relative flex items-center justify-center min-h-screen p-4">
-        <motion.div
-          className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-300 overflow-hidden z-10"
-          initial={{ y: '100vh' }}
-          animate={{ y: 0 }}
-          transition={{ type: 'spring', stiffness: 100 }}
-        >
-          <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">ASCEND MENTOR</h2>
-          <p className="text-gray-600 mb-6 text-center text-lg">Join us and start your journey towards success!</p>
-          <form onSubmit={handleRegister} className="space-y-4">
-            <div className="flex space-x-2 mb-4">
-              <div className="flex-1">
-                <label className="block text-gray-700 text-lg">First Name</label>
-                <motion.input
-                  type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  whileFocus={{ scale: 1.05 }}
-                />
-              </div>
-              <div className="flex-1">
-                <label className="block text-gray-700 text-lg">Last Name</label>
-                <motion.input
-                  type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  whileFocus={{ scale: 1.05 }}
-                />
-              </div>
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-lg">Email</label>
-              <motion.input
-                type="email"
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                whileFocus={{ scale: 1.05 }}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-lg">Password</label>
-              <motion.input
-                type="password"
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                whileFocus={{ scale: 1.05 }}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-lg">Confirm Password</label>
-              <motion.input
-                type="password"
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                whileFocus={{ scale: 1.05 }}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-lg">Security Question</label>
-              <motion.select
-                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                value={securityQuestion}
-                onChange={(e) => setSecurityQuestion(e.target.value)}
-                whileFocus={{ scale: 1.05 }}
-              >
-                <option>What is your favourite sport?</option>
-                <option>What is the name of your school?</option>
-                <option>What is your favourite pet name?</option>
-                <option>What is the name of the town where you were born?</option>
-              </motion.select>
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-lg">Answer</label>
+    <div className="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col justify-center items-center">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-gray-300 mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-center text-gray-800">ASCEND MENTOR</h2>
+        <p className="text-gray-600 mb-6 text-center text-lg">Join us and start your journey towards success!</p>
+        <form onSubmit={handleRegister} className="space-y-4">
+          <div className="flex space-x-2 mb-4">
+            <div className="flex-1">
+              <label className="block text-gray-700 text-lg">First Name</label>
               <motion.input
                 type="text"
                 className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
-                placeholder="Enter your answer"
-                value={securityAnswer}
-                onChange={(e) => setSecurityAnswer(e.target.value)}
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 whileFocus={{ scale: 1.05 }}
               />
             </div>
-            <motion.button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 rounded-lg mb-4 hover:from-blue-600 hover:to-purple-700 focus:outline-none transition-all duration-300 ease-in-out"
-              whileHover={{ scale: 1.05 }}
-            >
-              Register
-            </motion.button>
-            <motion.button
-              type="button"
-              className="w-full bg-red-500 text-white p-3 rounded-lg mb-4 hover:bg-red-600 focus:outline-none transition-all duration-300 ease-in-out"
-              whileHover={{ scale: 1.05 }}
-              onClick={handleGoogleSignup}
-            >
-              Sign Up with Google
-            </motion.button>
-            <div className="text-center">
-              <p className="text-gray-600">Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+            <div className="flex-1">
+              <label className="block text-gray-700 text-lg">Last Name</label>
+              <motion.input
+                type="text"
+                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                whileFocus={{ scale: 1.05 }}
+              />
             </div>
-            {message && <p className="text-green-500 text-center">{message}</p>}
-            {error && <p className="text-red-500 text-center">{error}</p>}
-          </form>
-        </motion.div>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg">Email</label>
+            <motion.input
+              type="email"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              whileFocus={{ scale: 1.05 }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg">Password</label>
+            <motion.input
+              type="password"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              whileFocus={{ scale: 1.05 }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg">Confirm Password</label>
+            <motion.input
+              type="password"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              placeholder="Confirm your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              whileFocus={{ scale: 1.05 }}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg">Security Question</label>
+            <motion.select
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              value={securityQuestion}
+              onChange={(e) => setSecurityQuestion(e.target.value)}
+              whileFocus={{ scale: 1.05 }}
+            >
+              <option>What is your favourite sport?</option>
+              <option>What is the name of your school?</option>
+              <option>What is your favourite pet name?</option>
+              <option>What is the name of the town where you were born?</option>
+            </motion.select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-lg">Answer</label>
+            <motion.input
+              type="text"
+              className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
+              placeholder="Enter your answer"
+              value={securityAnswer}
+              onChange={(e) => setSecurityAnswer(e.target.value)}
+              whileFocus={{ scale: 1.05 }}
+            />
+          </div>
+          <motion.button
+            type="submit"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg mb-4 hover:from-blue-700 hover:to-purple-700 focus:outline-none transition-all duration-300 ease-in-out"
+            whileHover={{ scale: 1.05 }}
+          >
+            Register
+          </motion.button>
+          <motion.button
+            type="button"
+            className="w-full bg-red-500 text-white p-3 rounded-lg mb-4 hover:bg-red-600 focus:outline-none transition-all duration-300 ease-in-out"
+            whileHover={{ scale: 1.05 }}
+            onClick={handleGoogleSignup}
+          >
+            Sign Up with Google
+          </motion.button>
+          <div className="text-center">
+            <p className="text-gray-600">Already have an account? <a href="/login" className="text-blue-500 hover:underline">Login</a></p>
+          </div>
+          {message && <p className="text-green-500 text-center">{message}</p>}
+          {error && <p className="text-red-500 text-center">{error}</p>}
+        </form>
       </div>
+      {/* Add footer here */}
+      <footer className="bg-gray-800 text-white py-4 w-full text-center">
+        <p>&copy; 2024 ASCEND MENTOR. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
