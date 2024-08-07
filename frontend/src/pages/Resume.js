@@ -33,8 +33,12 @@ const ResumeReview = () => {
 
   const formatReview = (text) => {
     return text
-      .replace(/(Key Points:|Strengths:|Areas for Improvement:)/g, '<strong>$1</strong>')
-      .replace(/_(.*?)_/g, '<u>$1</u>');
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+      .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italics
+      .replace(/\n/g, '<br/>') // Line breaks
+      .replace(/(?:<br\/>)*\* (.*?)(?=<br\/>)/g, '<li>$1</li>') // Unordered list items
+      .replace(/(?:<br\/>)*(<li>.*<\/li>)(?!<li>)/g, '<ul>$1</ul>') // Wrap list items with <ul>
+      .replace(/<\/ul><ul>/g, ''); // Remove unnecessary nested <ul> elements
   };
 
   return (
@@ -80,10 +84,13 @@ const ResumeReview = () => {
           </button>
         </form>
         {review && (
-          <div className="mt-6 p-4 bg-white rounded-lg shadow-md">
+          <div
+            className="mt-6 p-4 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out"
+            style={{ opacity: review ? 1 : 0 }}
+          >
             <h2 className="text-2xl font-bold mb-4 text-center">Review Feedback</h2>
             <div
-              className="text-gray-700 whitespace-pre-line"
+              className="text-gray-700"
               dangerouslySetInnerHTML={{ __html: formatReview(review) }}
             />
           </div>
