@@ -10,7 +10,6 @@ import Profile from './pages/Profile';
 import Register from './pages/Register';
 import Resume from './pages/Resume';
 import SkillBot from './pages/SkillBot';
-import UserDashboard from './pages/UserDashboard';
 
 import Footer from './components/Footer'; // Import Footer component
 import Navbar from './components/Navbar'; // Import Navbar component
@@ -33,7 +32,6 @@ function App() {
             <Route path="/interview" element={<ChatbotInterview />} />
             <Route path="/learning" element={<LearningPlanForm />} />
       
-            <Route path="/dashboard" element={<UserDashboard />} />
         
           </Routes>
         </main>

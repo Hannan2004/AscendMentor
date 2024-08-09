@@ -49,7 +49,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-300 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center p-6">
       <motion.div
         className="bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-md border border-gray-200"
         initial={{ opacity: 0, scale: 0.95 }}
