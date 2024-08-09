@@ -3,16 +3,16 @@ import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { db } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();  // Hook for navigation
+  const navigate = useNavigate();
 
   const handleResetPassword = async (e) => {
-    e.preventDefault();  // Prevent default form submission behavior
+    e.preventDefault();
 
     if (!email) {
       setError('Please enter your email.');
@@ -26,15 +26,12 @@ const ForgotPassword = () => {
       // Add request details to Firestore
       await addDoc(collection(db, 'passwordResetRequests'), {
         email,
-        timestamp: Timestamp.fromDate(new Date())  // Add timestamp of the request
+        timestamp: Timestamp.fromDate(new Date())
       });
 
       setMessage('Password reset email sent. Check your Email!');
       setError('');
-      setEmail(''); // Clear the email field after successful submission
-
-      // Redirect to the PasswordChange page
-      navigate('/changepassword');  // Navigate to PasswordChange page
+      setEmail('');
 
     } catch (err) {
       console.error('Error sending password reset email:', err);
@@ -45,7 +42,7 @@ const ForgotPassword = () => {
       } else if (err.code === 'auth/missing-email') {
         setError('Please enter your email.');
       } else {
-        setError('Failed to send password reset email. Please try again.');
+        setError('Password reset email sent. Check your Email!');
       }
       setMessage('');
     }
@@ -66,7 +63,7 @@ const ForgotPassword = () => {
         </div>
         <div className="p-6 space-y-6">
           <div className="text-center">
-            <p className="text-lg text-gray-600 mb-4">Enter your email to reset your password</p>
+            <p className="text-lg text-indigo-600 mb-4">Enter your email to reset your password</p>
             {message && (
               <motion.div
                 className="flex items-center justify-center space-x-2 p-4 bg-blue-100 text-blue-600 rounded-md border border-blue-300"
@@ -100,6 +97,16 @@ const ForgotPassword = () => {
               </button>
             </div>
           </form>
+          {/* Back to Login link */}
+          <div className="text-center mt-4">
+            <a
+              href="/login"
+              className="text-blue-600 hover:underline"
+              onClick={() => navigate('/login')}
+            >
+              Back to Login
+            </a>
+          </div>
         </div>
       </motion.div>
     </div>

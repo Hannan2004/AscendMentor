@@ -62,6 +62,16 @@ const Login = () => {
               whileFocus={{ scale: 1.05 }}
             />
           </div>
+          {/* Forgot Password link */}
+          <div className="text-right mb-4">
+            <a
+              href="#"
+              className="text-blue-500 hover:underline"
+              onClick={() => navigate('/forgotpassword')} // Navigate to Forgot Password page
+            >
+              Forgot Password?
+            </a>
+          </div>
           <motion.button
             type="submit"
             className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg mb-4 hover:from-blue-700 hover:to-purple-700 focus:outline-none transition-all duration-300 ease-in-out"
@@ -77,18 +87,14 @@ const Login = () => {
           >
             Login with Google
           </motion.button>
-          <motion.button
-            type="button"
-            className="w-full bg-green-500 text-white p-3 rounded-lg mb-4 hover:bg-green-600 focus:outline-none transition-all duration-300 ease-in-out"
-            whileHover={{ scale: 1.05 }}
-            onClick={() => navigate('/register')}
-          >
-            Register
-          </motion.button>
+          {/* Register link */}
           <div className="text-center">
-            <p className="text-gray-600">
-              <a href="#" className="text-blue-500 hover:underline" onClick={() => navigate('/changepassword')}>Forgot Password?</a>
-            </p>
+            <a
+              href="/register"
+              className="text-blue-500 hover:underline"
+            >
+              Don't have an account? Register
+            </a>
           </div>
           {message && <p className="text-green-500 text-center">{message}</p>}
           {error && <p className="text-red-500 text-center">{error}</p>}

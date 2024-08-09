@@ -1,19 +1,19 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ForgotPassword from './pages/ForgotPassword';
-import Profile from './pages/Profile';
 import HomePage from './pages/Home';
-import SkillBot from './pages/SkillBot';
-import Resume from './pages/Resume';
-import InterviewForm from './pages/InterviewForm';
 import ChatbotInterview from './pages/InterviewBot';
-import UserDashboard from './pages/UserDashboard';
+import InterviewForm from './pages/InterviewForm';
 import LearningPlanForm from './pages/LearningPlanForm';
-import ChangePassword from './pages/passwordChange';
-import Navbar from './components/Navbar';  // Import Navbar component
-import Footer from './components/Footer';  // Import Footer component
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Register from './pages/Register';
+import Resume from './pages/Resume';
+import SkillBot from './pages/SkillBot';
+import UserDashboard from './pages/UserDashboard';
+
+import Footer from './components/Footer'; // Import Footer component
+import Navbar from './components/Navbar'; // Import Navbar component
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
             <Route path="/form" element={<InterviewForm />} />
             <Route path="/interview" element={<ChatbotInterview />} />
             <Route path="/learning" element={<LearningPlanForm />} />
-            <Route path="/changepassword" element={<ChangePassword />} />
+      
             <Route path="/dashboard" element={<UserDashboard />} />
         
           </Routes>
