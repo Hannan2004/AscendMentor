@@ -69,8 +69,8 @@ To further prepare users for the job application process, AscendMentors offers a
 #### Backend:
 - ![Node.js Logo](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-#### AI & Content Generation:
-- ![Placeholder Logo](https://img.shields.io/badge/AI_Gemini-FF9900?style=for-the-badge&logoColor=white) 
+#### Large Language Model:
+- ![Placeholder Logo](https://img.shields.io/badge/Gemini-FF9900?style=for-the-badge&logoColor=white) 
 
 
 
